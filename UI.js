@@ -400,7 +400,7 @@ function searchAndHighlight() {
     const searchInput = document.getElementById('searchInput');
     const searchTerms = searchInput.value.split(',')
         .map(term => term.trim().toLowerCase())
-        .filter(term => term.length >= 4); // Filter out terms less than 4 letters
+        .filter(term => term.length >= 3); // Filter out terms less than 3 letters
 
     const queueItems = document.querySelectorAll('.queueItem, .packItem > div, .voucherContainer, .tagContainer, .bossContainer');
 
@@ -445,7 +445,7 @@ function searchAndHighlight() {
     }
 
     label {
-        color: #cccccc;
+        color: #ffffff;
     }
 
     input,
@@ -488,12 +488,13 @@ function searchAndHighlight() {
         margin-bottom: 20px;
         border: 1px solid #555555;
         padding: 10px;
-        background-color: #333333;
+        background-image: url("images/background.jpg");
     }
 
     .queueTitle {
-        font-weight: bold;
         margin-bottom: 5px;
+        font-size: 25px;
+        font-family: "m6x11";
         color: #ffffff;
     }
 
@@ -503,7 +504,6 @@ function searchAndHighlight() {
         gap: 15px;
         font-size: 12px;
         margin-bottom: 10px;
-        color: #cccccc;
         text-align: center;
     }
 
@@ -545,11 +545,6 @@ function searchAndHighlight() {
         margin-top: 3px;
         line-height: 1.2;
     }
-
-    .modifier {
-        color: #aaaaaa;
-    }
-
     .sticker {
         color: #ffcc00;
     }
@@ -584,7 +579,6 @@ function searchAndHighlight() {
         flex-wrap: wrap;
         gap: 5px;
         margin-bottom: 10px;
-        color: #ffffff;
     }
 
     .packItem > div {
@@ -608,19 +602,15 @@ function searchAndHighlight() {
         font-size: 10px;
         margin-bottom: 3px;
         word-wrap: break-word;
-        color: #ffffff;
     }
 
     .packItem .standardCardName {
         font-size: 10px;
-        margin-bottom: 3px;
         word-wrap: break-word;
-        color: #ffffff;
     }
 
     .packItem .modifier {
         font-size: 10px;
-        color: #aaaaaa;
     }
     .packItem > .packName {
         display: flex;
@@ -652,7 +642,6 @@ function searchAndHighlight() {
     font-size: 10px;
     margin-bottom: 3px;
     word-wrap: break-word;
-    color: #ffffff;
 }
 
 .tagsContainer {
@@ -672,9 +661,9 @@ function searchAndHighlight() {
     font-size: 14px;
 }
 .highlight {
-    background-color: rgba(150, 237, 121, 0.3);
+    background-color: rgb(241, 240, 0);
     border-radius: 3px;
-    box-shadow: 0px 0px 20px 15px rgba(150, 237, 121, 0.3);
+    color: black !important;
 }
 .bossContainer {
     display: flex;
@@ -694,7 +683,6 @@ function searchAndHighlight() {
     font-size: 10px;
     margin-bottom: 3px;
     word-wrap: break-word;
-    color: #ffffff;
 }
 
 `;
@@ -707,7 +695,7 @@ function searchAndHighlight() {
 
     const searchLabel = document.createElement('label');
     searchLabel.setAttribute('for', 'searchInput');
-    searchLabel.textContent = 'Press enter to search (comma separated values, min length 4 char)';
+    searchLabel.textContent = 'Press enter to search (comma separated values, min length 3 char)';
 
     const searchContainer = document.createElement('div');
     searchContainer.className = 'search-container';
