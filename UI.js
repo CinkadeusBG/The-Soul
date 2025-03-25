@@ -527,6 +527,7 @@ function searchAndHighlight() {
         display: inline-block;
         text-align: center;
         margin-right: 10px;
+        margin-bottom: 15px;
         font-size: 10px;
         white-space: normal;
         color: #ffffff;
@@ -662,10 +663,11 @@ function searchAndHighlight() {
 
 .search-container {
     margin-bottom: 10px;
+    padding: 15px;
 }
 
 #searchInput {
-    width: 100%;
+    width: 90%;
     padding: 5px;
     font-size: 14px;
 }

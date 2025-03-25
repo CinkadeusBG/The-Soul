@@ -137,3 +137,39 @@ input[id="seed"] {
     clear: both;
     display: table;
 }
+
+.grid {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    justify-items: end;
+    gap: 0.5rem 1rem; 
+    max-width: 600px;
+    padding-right: 15px;
+    margin: 0 auto; 
+  }
+
+  .form-grid label {
+    text-align: right;
+    display: flex;     
+    align-items: center; 
+  }
+
+  .form-grid input,
+  .form-grid select,
+  .form-grid button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .button-container {
+    width: 100%;
+    padding-top: 15px;
+    text-align: center;
+  }

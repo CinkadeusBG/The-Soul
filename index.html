@@ -39,13 +39,18 @@
 	<div class="container">
 		<div class="input-section">
 			<h2>Settings</h2>
-			<label for="seed">Seed:</label>
-			<input type="text"
-				id="seed"
-				maxlength="8"
-				pattern="[A-Z1-9]{1,8}"
-				required>
-			<br>
+
+
+			<form class="form-grid">
+
+				<label for="seed">Seed:</label>						
+	
+				<input type="text"
+					id="seed"
+					maxlength="8"
+					pattern="[A-Z1-9]{1,8}"
+					required>
+
 			<label for="ante">Max Ante:</label>
 			<input type="number"
 				id="ante"
@@ -53,13 +58,13 @@
 				max="999"
 				value="16"
 				required>
-			<br>
+	
 			<label for="cardsPerAnte">Cards per Ante:</label>
 			<input type="text"
 				id="cardsPerAnte"
 				value="15,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50"
 				required>
-			<br>
+		
 			<label for="deck">Deck:</label>
 			<select id="deck"
 				required>
@@ -80,7 +85,7 @@
 				<option value="Erratic Deck">Erratic Deck</option>
 				<!-- Add deck options here -->
 			</select>
-			<br>
+			
 			<label for="stake">Stake:</label>
 			<select id="stake"
 				required>
@@ -94,7 +99,7 @@
 				<option value="Gold Stake">Gold Stake</option>
 				<!-- Add stake options here -->
 			</select>
-			<br>
+			
 			<label for="version">Version:</label>
 			<select id="version"
 				required>
@@ -103,21 +108,9 @@
 				<option value="10014">1.0.0n</option>
 				<!-- Add version options here -->
 			</select>
-			<br>
-			<button id="openCheckboxesBtn">Modify Unlocks</button>
-			<div id="checkboxesOverlay">
-				<div id="checkboxesPopup">
-					<h2>Unlocked Items</h2>
-					<div id="checkboxesContainer"
-						class="clearfix"></div>
-					<button id="submitBtn">Submit</button>
-					<button id="unlockBtn">Unlock All</button>
-					<button id="lockBtn">Lock All</button>
-				</div>
-			</div>
-			<br>
-			<button id="analyzeButton">Analyze</button>
-			<button id="copyButton">Copy Link</button>
+			</form>
+			
+
 		</div>
 		<div class="output-section">
 			<h2>Output</h2>
@@ -127,6 +120,23 @@
 			<br>
 			<button id="downloadButton"
 				style="font-size: 1em">Download</button>
+		</div>
+	</div>
+
+	<div class="button-container">
+		<button id="openCheckboxesBtn">Modify Unlocks</button>
+		<button id="copyButton">Copy Link</button>
+		<button id="analyzeButton">Analyze</button>
+	</div>
+
+	<div id="checkboxesOverlay">
+		<div id="checkboxesPopup">
+			<h2>Unlocked Items</h2>
+			<div id="checkboxesContainer"
+				class="clearfix"></div>
+			<button id="submitBtn">Submit</button>
+			<button id="unlockBtn">Unlock All</button>
+			<button id="lockBtn">Lock All</button>
 		</div>
 	</div>
 </body>
