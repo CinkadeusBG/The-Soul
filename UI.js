@@ -510,10 +510,9 @@ function searchAndHighlight() {
     .scrollable {
         display: flex;
         overflow-x: auto;
-        white-space: nowrap;
-        cursor: grab;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        flex-wrap: wrap;
     }
 
     .scrollable:active {
