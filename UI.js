@@ -663,6 +663,16 @@ function searchAndHighlight() {
     background-color: rgb(241, 240, 0);
     border-radius: 3px;
     color: black !important;
+    animation: wiggle 2s infinite;
+}
+
+@keyframes wiggle {
+    0%    { transform: rotate(0deg); }
+    6.67% { transform: rotate(10deg); }
+    13.33% { transform: rotate(0deg); }
+    20%   { transform: rotate(-10deg); }
+    26.67% { transform: rotate(0deg); }
+    100%  { transform: rotate(0deg); }
 }
 .bossContainer {
     display: flex;
@@ -721,6 +731,7 @@ function searchAndHighlight() {
 
     // Function to extract shop queues from the textarea content
     function extractShopQueues(text) {
+
         const shopQueues = [];
         const regex = /==ANTE \d+==[\s\S]*?(?=(?:==ANTE \d+==|$))/g;
         const matches = text.match(regex);
@@ -786,11 +797,61 @@ function searchAndHighlight() {
         }
     }
 
+    function updateHistoryWithSeed() {
+        const seedInput = document.getElementById("seed");
+        const noteInput = document.getElementById("note");
+        const historyBox = document.getElementById("historyBox");
+        const seed = seedInput.value.trim();
+        const note = noteInput.value.trim();
+      
+        if (seed !== "") {
+          // Create the new entry with a current timestamp
+          const timestamp = new Date().toLocaleString();
+          let newEntry = `${seed} - ${timestamp}`;
+          if (note !== "") {
+            newEntry += ` - ${note}`;
+          }
+      
+          // Get existing entries as an array, filtering out blank lines
+          const historyEntries = historyBox.value
+            .split("\n")
+            .filter(entry => entry.trim().length > 0);
+      
+          // Check if an entry for this seed exists (it should start with "seed -")
+          const existingEntryIndex = historyEntries.findIndex(entry =>
+            entry.startsWith(`${seed} -`)
+          );
+      
+          if (existingEntryIndex !== -1) {
+            // If an entry exists, extract its note (if any) by splitting the entry
+            const parts = historyEntries[existingEntryIndex].split(" - ");
+            const existingNote = parts.slice(2).join(" - ") || "";
+            
+            // If the note differs, remove the old entry so the new one can be prepended
+            if (existingNote !== note) {
+              historyEntries.splice(existingEntryIndex, 1);
+            } else {
+              // If the note is the same, do nothing further (or update timestamp if needed)
+              return;
+            }
+          }
+          
+          // Prepend the new entry
+          historyBox.value = newEntry + "\n" + historyEntries.join("\n");
+          // Save the updated history to localStorage
+          localStorage.setItem("seedHistory", historyBox.value);
+        }
+      }
+      
+
     // Function to create and display the side-scrolling list
     function displayShopQueues() {
         const textarea = document.getElementById('outputBox');
         const text = textarea.value;
-        const shopQueues = extractShopQueues(text);
+
+        updateHistoryWithSeed();
+
+        const shopQueues = extractShopQueues(text);        
 
         scrollingContainer.innerHTML = ''; // Clear previous content
 
@@ -1067,3 +1128,56 @@ function searchAndHighlight() {
     // Initialize the display
     displayShopQueues();
 })();
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const historyBox = document.getElementById("historyBox");
+    const savedHistory = localStorage.getItem("seedHistory");
+    const noteInput = document.getElementById("note");
+    const seedInput = document.getElementById("seed");
+    const analyzeButton = document.getElementById("analyzeButton");
+
+    if (savedHistory) {
+      historyBox.value = savedHistory;
+    }
+
+    clearHistoryButton.addEventListener("click", function() {
+        // Clear the history textarea
+        historyBox.value = "";
+        // Remove the stored history from localStorage
+        localStorage.removeItem("seedHistory");
+      });
+
+      historyBox.addEventListener("click", function() {
+        // Get the click position in the textarea
+        const pos = historyBox.selectionStart;
+        const lines = historyBox.value.split("\n");
+        let charCount = 0;
+        let clickedLine = "";
+    
+        // Determine which line was clicked based on the caret position
+        for (const line of lines) {
+          if (pos <= charCount + line.length) {
+            clickedLine = line;
+            break;
+          }
+          charCount += line.length + 1; // add one for newline
+        }
+    
+        if (clickedLine) {
+          // Assume the format is "SEED - Timestamp" or "SEED - Timestamp - Note"
+          const parts = clickedLine.split(" - ");
+          const seed = parts[0].trim();
+          // If a note exists (parts[2] onward), join them, otherwise default to an empty string
+          const note = parts.length >= 3 ? parts.slice(2).join(" - ").trim() : "";
+    
+          if (seed) {
+            seedInput.value = seed;
+            noteInput.value = note;  // load the note or blank if not present
+            analyzeButton.click();
+          }
+        }
+      });
+    
+    
+  });

@@ -108,14 +108,26 @@
 				<option value="10014">1.0.0n</option>
 				<!-- Add version options here -->
 			</select>
+
+			<label for="note">Note:</label>
+			<input type="text"
+				id="note"
+				value="">
 			</form>
 			
 
 		</div>
 		<div class="output-section">
+			<h2>History</h2>
+			<textarea id="historyBox"
+				rows="23"
+				readonly></textarea>
+			<br>
+		</div>
+		<div class="output-section">
 			<h2>Output</h2>
 			<textarea id="outputBox"
-				rows="16"
+				rows="21"
 				readonly></textarea>
 			<br>
 			<button id="downloadButton"
@@ -125,6 +137,7 @@
 
 	<div class="button-container">
 		<button id="openCheckboxesBtn">Modify Unlocks</button>
+		<button id="clearHistoryButton">Clear History</button>
 		<button id="copyButton">Copy Link</button>
 		<button id="analyzeButton">Analyze</button>
 	</div>
