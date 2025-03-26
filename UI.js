@@ -488,7 +488,6 @@ function searchAndHighlight() {
         margin-bottom: 20px;
         border: 1px solid #555555;
         padding: 10px;
-        background-image: url("images/background.jpg");
     }
 
     .queueTitle {
