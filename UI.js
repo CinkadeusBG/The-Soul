@@ -663,15 +663,15 @@ function searchAndHighlight() {
     background-color: rgb(241, 240, 0);
     border-radius: 3px;
     color: black !important;
-    animation: wiggle 2s infinite;
+    animation: wiggle 1s infinite;
 }
 
 @keyframes wiggle {
     0%    { transform: rotate(0deg); }
-    6.67% { transform: rotate(10deg); }
-    13.33% { transform: rotate(0deg); }
-    20%   { transform: rotate(-10deg); }
-    26.67% { transform: rotate(0deg); }
+    2% { transform: rotate(10deg); }
+    7% { transform: rotate(0deg); }
+    10%   { transform: rotate(-10deg); }
+    15% { transform: rotate(0deg); }
     100%  { transform: rotate(0deg); }
 }
 .bossContainer {
