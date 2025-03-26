@@ -43,13 +43,12 @@
 
 			<form class="form-grid">
 
-				<label for="seed">Seed:</label>						
-	
-				<input type="text"
-					id="seed"
-					maxlength="8"
-					pattern="[A-Z1-9]{1,8}"
-					required>
+				<label for="seed">Seed:</label>
+				<div class="seed-input-container">
+					<input type="text" style="width: 230px;" id="seed" maxlength="8" pattern="[A-Z1-9]{1,8}" required>
+					<button type="button" id="clearSeedButton">Clear</button>
+				  </div>
+				
 
 			<label for="ante">Max Ante:</label>
 			<input type="number"

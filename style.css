@@ -45,6 +45,13 @@ label {
     font-family: "m6x11";
 }
 
+.seed-input-container {
+    display: inline-flex;       /* or display: flex; */
+    align-items: center;
+    gap: 0.5em;                 /* space between input and button */
+  }
+  
+
 .container {
     display: flex;
     justify-content: space-around;

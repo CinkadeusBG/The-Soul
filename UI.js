@@ -1135,6 +1135,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const savedHistory = localStorage.getItem("seedHistory");
     const noteInput = document.getElementById("note");
     const seedInput = document.getElementById("seed");
+    const clearSeedButton = document.getElementById("clearSeedButton");
     const analyzeButton = document.getElementById("analyzeButton");
 
     if (savedHistory) {
@@ -1146,6 +1147,11 @@ document.addEventListener("DOMContentLoaded", function() {
         historyBox.value = "";
         // Remove the stored history from localStorage
         localStorage.removeItem("seedHistory");
+      });
+
+      clearSeedButton.addEventListener("click", function() {
+        seedInput.value = "";
+        noteInput.value = "";
       });
 
       historyBox.addEventListener("click", function() {
